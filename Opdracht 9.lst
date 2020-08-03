@@ -1,0 +1,279 @@
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 1
+
+
+
+
+
+       MCS-51 Family Macro Assembler   A S E M - 5 1   V 1.3
+       =====================================================
+
+
+
+	Source File:	C:\Studenten\Anton en Pieter-Jan\Oefeningen\Opdracht 9.asm
+	Object File:	C:\Studenten\Anton en Pieter-Jan\Oefeningen\Opdracht 9.hex
+	List File:	C:\Studenten\Anton en Pieter-Jan\Oefeningen\Opdracht 9.lst
+
+
+
+ Line  I  Addr  Code            Source
+
+    1:				$nolist
+  179:		N      007F	stack_init	equ	07fh
+  180:		N      007F	code1		equ	01111111b
+  181:
+  182:		N      0000			org	0000h
+  183:	  0000	02 00 03			ljmp	start
+  184:
+  185:	  0003	75 81 7F	start:		mov	sp,#stack_init
+  186:	  0006	74 7F				mov	a,#code1
+  187:	  0008	F5 A0		rechts:		mov	p2,a
+  188:	  000A	11 1A				acall	delay
+  189:	  000C	03				rr	a
+  190:	  000D	20 E0 F8			jb	acc.0,rechts
+  191:	  0010	F5 A0		links:		mov	p2,a
+  192:	  0012	11 1A				acall	delay
+  193:	  0014	23				rl	a
+  194:	  0015	20 E7 F8			jb	acc.7, links
+  195:	  0018	80 EE				sjmp 	rechts
+  196:
+  197:	  001A	C0 E0		delay:		push 	acc
+  198:	  001C	E5 80				mov 	a,p0
+  199:	  001E	70 02				jnz	delay1
+  200:	  0020	44 01				orl	a,#00000001b
+  201:	  0022	78 37		delay1:		mov	r0,#55
+  202:	  0024	79 37		delay2:		mov	r1,#55
+  203:	  0026	D9 FE		delay3:		djnz	r1,delay3
+  204:	  0028	D8 FA				djnz	r0,delay2
+  205:	  002A	D5 E0 F5			djnz	acc,delay1
+  206:	  002D	D0 E0				pop	acc
+  207:	  002F	22				ret
+  208:				end
+
+
+
+
+
+                     register banks used:  ---
+
+                     no errors
+
+
+
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 2
+
+
+
+
+
+	       L I S T   O F   S Y M B O L S
+	       =============================
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+??ASEM_51			  NUMBER    8051
+??VERSION			  NUMBER    0130
+AC				  BIT	      D6	 148
+ACC				  DATA	      E0	  67
+ADCCON1				  DATA	      EF	  70
+ADCCON2				  DATA	      D8	  63
+ADCCON3				  DATA	      F5	  76
+ADCDATAH			  DATA	      DA	  65
+ADCDATAL			  DATA	      D9	  64
+ADCGAINH			  DATA	      F4	  75
+ADCGAINL			  DATA	      F3	  74
+ADCI				  BIT	      DF	 157
+ADCOFSH				  DATA	      F2	  73
+ADCOFSL				  DATA	      F1	  72
+B				  DATA	      F0	  71
+CAP2				  BIT	      C8	 134
+CCONV				  BIT	      DD	 155
+CFG832				  DATA	      AF	  36
+CHIPID				  DATA	      C2	  50
+CNT2				  BIT	      C9	 135
+CODE1				  NUMBER    007F	 180
+CPHA				  BIT	      FA	 172
+CPOL				  BIT	      FB	 173
+CS0				  BIT	      D8	 150
+CS1				  BIT	      D9	 151
+CS2				  BIT	      DA	 152
+CS3				  BIT	      DB	 153
+CY				  BIT	      D7	 149
+D0				  BIT	      ED	 159
+D0EN				  BIT	      EB	 158
+D1				  BIT	      EF	 161
+D1EN				  BIT	      EE	 160
+DAC0H				  DATA	      FA	  80
+DAC0L				  DATA	      F9	  79
+DAC1H				  DATA	      FC	  82
+DAC1L				  DATA	      FB	  81
+DACCON				  DATA	      FD	  83
+DCON				  DATA	      E8	  68
+DELAY				  CODE	    001A	 197
+DELAY1				  CODE	    0022	 201
+DELAY2				  CODE	    0024	 202
+DELAY3				  CODE	    0026	 203
+DMA				  BIT	      DE	 156
+DMAH				  DATA	      D3	  60
+DMAL				  DATA	      D2	  59
+DMAP				  DATA	      D4	  61
+DPCON				  DATA	      A7	  32
+DPH				  DATA	      83	   9
+DPL				  DATA	      82	   8
+DPP				  DATA	      84	  10
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 3
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+EA				  BIT	      AF	 109
+EADC				  BIT	      AE	 108
+EADRH				  DATA	      C7	  52
+EADRL				  DATA	      C6	  51
+ECON				  DATA	      B9	  44
+EDATA1				  DATA	      BC	  45
+EDATA2				  DATA	      BD	  46
+EDATA3				  DATA	      BE	  47
+EDATA4				  DATA	      BF	  48
+ES				  BIT	      AC	 106
+ET0				  BIT	      A9	 103
+ET1				  BIT	      AB	 105
+ET2				  BIT	      AD	 107
+EX0				  BIT	      A8	 102
+EX1				  BIT	      AA	 104
+EXEN2				  BIT	      CB	 137
+EXF2				  BIT	      CE	 140
+F0				  BIT	      D5	 147
+F1				  BIT	      D1	 143
+HOUR				  DATA	      A5	  30
+HTHSEC				  DATA	      A2	  27
+I2CADD				  DATA	      9B	  22
+I2CCON				  DATA	      E8	  69
+I2CDAT				  DATA	      9A	  21
+I2CI				  BIT	      E8	 162
+I2CM				  BIT	      EB	 165
+I2CRS				  BIT	      EA	 164
+I2CTX				  BIT	      E9	 163
+IE				  DATA	      A8	  33
+IE0				  BIT	      89	  85
+IE1				  BIT	      8B	  87
+IEIP2				  DATA	      A9	  34
+INT0				  BIT	      B2	 112
+INT1				  BIT	      B3	 113
+INTVAL				  DATA	      A6	  31
+IP				  DATA	      B8	  43
+ISPI				  BIT	      FF	 177
+IT0				  BIT	      88	  84
+IT1				  BIT	      8A	  86
+LINKS				  CODE	    0010	 191
+MCO				  BIT	      ED	 167
+MDE				  BIT	      EE	 168
+MDI				  BIT	      EC	 166
+MDO				  BIT	      EF	 169
+MIN				  DATA	      A4	  29
+OV				  BIT	      D2	 144
+P				  BIT	      D0	 142
+P0				  DATA	      80	   6
+P1				  DATA	      90	  18
+P2				  DATA	      A0	  25
+P3				  DATA	      B0	  37
+PADC				  BIT	      BE	 124
+PCON				  DATA	      87	  11
+PLLCON				  DATA	      D7	  62
+PRE0				  BIT	      C4	 130
+PRE1				  BIT	      C5	 131
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 4
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+PRE2				  BIT	      C6	 132
+PRE3				  BIT	      C7	 133
+PS				  BIT	      BC	 122
+PSI				  BIT	      BF	 125
+PSMCON				  DATA	      DF	  66
+PSW				  DATA	      D0	  58
+PT0				  BIT	      B9	 119
+PT1				  BIT	      BB	 121
+PT2				  BIT	      BD	 123
+PWM0H				  DATA	      B2	  39
+PWM0L				  DATA	      B1	  38
+PWM1H				  DATA	      B4	  41
+PWM1L				  DATA	      B3	  40
+PWMCON				  DATA	      AE	  35
+PX0				  BIT	      B8	 118
+PX1				  BIT	      BA	 120
+RB8				  BIT	      9A	  96
+RCAP2H				  DATA	      CB	  55
+RCAP2L				  DATA	      CA	  54
+RCLK				  BIT	      CD	 139
+RD				  BIT	      B7	 117
+RECHTS				  CODE	    0008	 187
+REN				  BIT	      9C	  98
+RI				  BIT	      98	  94
+RS0				  BIT	      D3	 145
+RS1				  BIT	      D4	 146
+RXD				  BIT	      B0	 110
+SBUF				  DATA	      99	  20
+SCON				  DATA	      98	  19
+SCONV				  BIT	      DC	 154
+SEC				  DATA	      A3	  28
+SM0				  BIT	      9F	 101
+SM1				  BIT	      9E	 100
+SM2				  BIT	      9D	  99
+SP				  DATA	      81	   7
+SPE				  BIT	      FD	 175
+SPH				  DATA	      B7	  42
+SPICON				  DATA	      F8	  78
+SPIDAT				  DATA	      F7	  77
+SPIM				  BIT	      FC	 174
+SPR0				  BIT	      F8	 170
+SPR1				  BIT	      F9	 171
+STACK_INIT			  NUMBER    007F	 179
+START				  CODE	    0003	 185
+T0				  BIT	      B4	 114
+T1				  BIT	      B5	 115
+T2				  BIT	      90	  92
+T2CON				  DATA	      C8	  53
+T2EX				  BIT	      91	  93
+T3CON				  DATA	      9E	  23
+T3FD				  DATA	      9D	  24
+TB8				  BIT	      9B	  97
+TCLK				  BIT	      CC	 138
+TCON				  DATA	      88	  12
+TF0				  BIT	      8D	  89
+TF1				  BIT	      8F	  91
+
+ASEM-51 V1.3                                         Copyright (c) 2002 by W.W. Heinz                                         PAGE 5
+
+
+
+SYMBOL				  TYPE     VALUE	LINE
+------------------------------------------------------------
+TF2				  BIT	      CF	 141
+TH0				  DATA	      8C	  16
+TH1				  DATA	      8D	  17
+TH2				  DATA	      CD	  57
+TI				  BIT	      99	  95
+TIMECON				  DATA	      A1	  26
+TL0				  DATA	      8A	  14
+TL1				  DATA	      8B	  15
+TL2				  DATA	      CC	  56
+TMOD				  DATA	      89	  13
+TR0				  BIT	      8C	  88
+TR1				  BIT	      8E	  90
+TR2				  BIT	      CA	 136
+TXD				  BIT	      B1	 111
+WCOL				  BIT	      FE	 176
+WDCON				  DATA	      C0	  49
+WDE				  BIT	      C1	 127
+WDIR				  BIT	      C3	 129
+WDS				  BIT	      C2	 128
+WDWR				  BIT	      C0	 126
+WR				  BIT	      B6	 116
